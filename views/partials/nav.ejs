@@ -1,0 +1,12 @@
+<div class="nav">
+    <button><a href="/">Home</a></button>
+    <% if (typeof user !== 'undefined') { %>
+      <button><a href="/join-club">Join the Club</a></button>
+      <button><a href="/new-message">New Message</a></button>
+      <button><a href="logout">Logout</a></button>
+      <p>Hello <%= user.username %></p>
+    <% } else { %>
+      <button><a href="/log-in">Log in</a></button>
+      <button><a href="/sign-up">Sign up</a></button>
+    <% } %>
+  </div>

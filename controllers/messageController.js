@@ -11,10 +11,52 @@ exports.index = async function (req, res, next) {
         res.render('index', {
             title: "Homepage",
             messages: allMessages,
-            user: req.author,
+            user: req.user,
         });
     } catch (err) {
         console.log(err);
     }
     // console.log(req.user.username);
 }
+
+exports.new_message_get = (req, res, next) => {
+    res.render('new-message', { title: "New Message", user: req.user });
+}
+
+exports.new_message_post = [
+    body("title", "The title must be between 1 and 25 characters.")
+        .trim()
+        .isLength({ min: 1, max: 25 })
+        .escape(),
+    body("text", "The message must be between 1 and 200 characters.")
+        .trim()
+        .isLength({ min: 1, max: 200 })
+        .escape(),
+
+    async (req, res, next) => {
+        try {
+            const errors = validationResult(req);
+
+            const post = new Message({
+                title: req.body.title,
+                text: req.body.text,
+                author: req.user._id,
+            });
+
+            if (!errors.isEmpty()) {
+                res.render("message", {
+                    title: "Create a message",
+                    user: req.user,
+                    text: text,
+                    errors: errors.array(),
+                });
+                return;
+            } else {
+                await post.save();
+                res.redirect("/");
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+]

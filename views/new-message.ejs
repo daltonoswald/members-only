@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <h1>Create a Message</h1>
+    <form action="/new-message" method="POST">
+        <label for="Title">Title</label>
+        <input name="title" placeholder="Title" type="text" />
+        <label for="text">Message</label>
+        <input name="text" type="text" maxlength="200"/>
+        <button>Post</button>
+    </form>
+    <% if (typeof errors !== 'undefined') { %>
+    <ul>
+        <% errors.forEach((error) => {%>
+        <li><%=error.msg%></li>
+        <%})%>
+    </ul>
+    <%}%>
+
+</body>
+</html>

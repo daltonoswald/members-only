@@ -28,7 +28,8 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  done(null, {_id: user._id});
+  // done(null, {_id: user._id});
+  done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
@@ -57,9 +58,19 @@ exports.user_log_in_get = async (req, res, next) => {
 
 exports.user_log_in_post = passport.authenticate("local", {
   successRedirect: "/",
+  // successRedirect: "/join-club",
   failureRedirect: "/log-in",
   failureMessage: true,
 })
+
+exports.user_logout = async(req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/');
+  })
+}
 
 
 exports.user_create_get = (req, res, next) => {
@@ -140,7 +151,6 @@ exports.user_join_club_post = async (req, res, next) => {
   try {
     if (req.body.passcode === process.env.PASSCODE) {
       await User.findByIdAndUpdate(req.user.id, { isMember: true });
-      console.log(req.user);
       res.redirect('/');
     } else {
       res.render('join-club', {

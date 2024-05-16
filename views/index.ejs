@@ -5,13 +5,18 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <%- include('./partials/nav.ejs') %>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %>
     <div class="message-container">
       <% messages.forEach(function(message) {%>
       <div class="message">
       <div class="message-info">
-        <p><%= message.author.username %></p>
+        <% if (!user) { %>
+          <p>Anonymous</p>
+        <% } else { %>
+          <p><%= message.author.username %></p>
+        <% } %>
         <p><%= message.date_formatted %></p>
       </div>
       <div class="message-text">
