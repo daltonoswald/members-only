@@ -60,3 +60,22 @@ exports.new_message_post = [
         }
     }
 ]
+
+exports.message_delete_get = async (req, res, next) => {
+    const message = await Message.findById(req.params.id).populate('author').populate('title').populate('text').exec();
+    res.render('delete-message', {
+        title: "Delete Message",
+        user: req.user,
+        message: message,
+        userMessageId: req.params.id,
+    })
+}
+
+exports.message_delete_post = async (req, res, next) => {
+    try {
+        await Message.findByIdAndDelete(req.params.id);
+        res.redirect('/');
+    } catch (err) {
+        console.log(err);
+    }
+}

@@ -1,8 +1,13 @@
 <div class="nav">
     <button><a href="/">Home</a></button>
     <% if (typeof user !== 'undefined') { %>
-      <button><a href="/join-club">Join the Club</a></button>
       <button><a href="/new-message">New Message</a></button>
+      <% if (!user.isMember) { %>
+        <button><a href="/join-club">Join the Club</a></button>
+      <% } %>
+      <% if (user.isMember && !user.isAdmin) { %>
+        <button><a href="/become-admin">Become an Admin</a></button>
+      <% } %>
       <button><a href="logout">Logout</a></button>
       <p>Hello <%= user.username %></p>
     <% } else { %>

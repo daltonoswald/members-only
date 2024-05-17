@@ -43,12 +43,12 @@ passport.deserializeUser(async (id, done) => {
 
 exports.user_log_in_get = async (req, res, next) => {
   try {
-    // const message = req.session.messages || [];
-    // req.session.messages = [];
+    const message = req.session.messages || [];
+    req.session.messages = [];
 
     res.render("log-in", {
       title: "Log in",
-      // message: message[0],
+      message: message[0],
       user: req.user,
     });
   } catch (err) {
@@ -163,3 +163,24 @@ exports.user_join_club_post = async (req, res, next) => {
     console.log(err);
   }
 }
+
+exports.user_become_admin_get = (req, res, next) => {
+  res.render('become-admin', { title: "Become an Admin", user: req.user });
+}
+
+exports.user_become_admin_post = async (req, res, next) => {
+    try {
+      if (req.body.adminCode === process.env.ADMINCODE) {
+        await User.findByIdAndUpdate(req.user.id, { isAdmin: true });
+        res.redirect('/');
+      } else {
+        res.render('become-admin', {
+          title: "Become an Admin",
+          user: req.user,
+          error: true,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
