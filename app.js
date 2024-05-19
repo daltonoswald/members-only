@@ -18,7 +18,8 @@ var app = express();
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB = process.env.DEV_DB_URL;
+const dev_db_url = process.env.DEV_DB_URL;
+const mongoDB = process.env.DEV_DB_URL || dev_db_url;
 
 main().catch((err) => console.log(err));
 async function main() {
@@ -49,7 +50,7 @@ app.use(limiter);
 
 app.use(
   session({
-    secret: process.env.SECRET,
+    secret: process.env.SECRET || SECRET,
     resave: false,
     saveUninitialized: true,
   })
