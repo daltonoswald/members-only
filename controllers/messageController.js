@@ -9,7 +9,7 @@ exports.index = async function (req, res, next) {
             .populate('author')
             .exec();
         res.render('index', {
-            title: "Homepage",
+            title: "Club House",
             messages: allMessages,
             user: req.user,
         });

@@ -1,12 +1,158 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
+  font: 14px "Roboto";
+  margin: 0;
+  background-color: #f1f6f8;
+  color: #21273d
 }
 
 a {
-  color: #00B7FF;
+  color: #21273d;
+  text-decoration: none;
+}
+
+.nav {
+  padding: 1vh 5vw;
+  background-color: #b9d4f1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  gap: 1vw;
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1vw;
+}
+
+.right {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.right > button,
+.left > button,
+.sign-up-button > button,
+.log-in-button > button,
+.delete-button > button,
+.new-message-button > button,
+.join-club-button > button,
+.become-admin-button > button,
+.delete-message-button > button {
+  background-color: #adb7da;
+  color: #21273d;
+  padding: .5em;
+  border-color: #21273d;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  font-weight: 400;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms,
+}
+
+.right > button:hover,
+.left > button:hover,
+.sign-up-form > .sign-up-button > button:hover,
+.log-in-button > button:hover,
+.new-message-button > button:hover,
+.join-club-button > button:hover,
+.become-admin > button:hover,
+.delete-message-button > button:hover {
+  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+  transform: translateY(-2px);
+}
+
+.main {
+  margin: 0 5vw;
 }
 
 .message {
   border: 2px solid black;
+  padding: 1vh 1vw;
+  margin-top: 2vh;
+  border-radius: 16px;
+}
+
+.message-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.message-author {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.message-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.sign-up-form,
+.log-in-form,
+.new-message-form,
+.join-club-form,
+.become-admin-form,
+.delete-message-form {
+  display: flex;
+  flex-direction: column;
+  padding: 1vw;
+  gap: 1vh;
+  width: 75%;
+  margin: 0 auto;
+}
+
+.back {
+  width: 75%;
+  margin: 0 auto;
+}
+
+label {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+input {
+  height: 2em;
+  padding: .5em;
+}
+
+.sign-up-button,
+.log-in-button,
+.delete-button,
+.new-message-button,
+.join-club-button,
+.become-admin-button,
+.delete-message-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sign-up-button > button,
+.log-in-button > button,
+.new-message-button > button,
+.join-club-button > button,
+.become-admin-button > button,
+.delete-message-button > button {
+  font-size: 16px;
+  width: 8em;
+  padding: .5em;
+}
+
+.new-message-text {
+  font-family: "Roboto";
+  font-size: 16px;
+  padding: .5em;
+  height: 100px;
+}
+
+.delete-button > button {
+  width: 4em;
+  padding: .5em;
 }

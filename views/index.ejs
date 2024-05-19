@@ -5,30 +5,34 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <%- include('./partials/nav.ejs') %>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %>
-    <div class="message-container">
-      <% messages.forEach(function(message) {%>
-      <div class="message">
-      <div class="message-info">
-        <% if (!user) { %>
-          <p>Anonymous</p>
-        <% } else if (!user.isMember) { %>
-          <p>Club Member</p>
-        <% } else { %>
-          <p><%= message.author.username %></p> 
+      <%- include('./partials/nav.ejs') %>
+      <div class="main">
+        <h1><%= title %></h1>
+        <p>Welcome to the <%= title %>
+        <div class="message-container">
+          <% messages.forEach(function(message) {%>
+          <div class="message">
+          <div class="message-info">
+            <% if (!user) { %>
+              <p class="message-author">Anonymous</p>
+            <% } else if (!user.isMember) { %>
+              <p class="message-author">Club Member</p>
+            <% } else { %>
+              <p class="message-author"><%= message.author.username %></p> 
+            <% } %>
+            <p><%= message.date_formatted %></p>
+          </div>
+          <div class="message-content">
+            <h3 class="message-title"><%= message.title %></h3>
+            <p class="message-text"><%= message.text %></p>
+          </div>
+          <% if (user && user.isAdmin) { %>
+            <div class="delete-button">
+              <button><a href="<%= '/delete-message/' + message._id %>">Delete</a></button>
+            </div>
         <% } %>
-        <p><%= message.date_formatted %></p>
-      </div>
-      <div class="message-text">
-        <h3><%= message.title %></h3>
-        <p><%= message.text %></p>
-      </div>
-      <% if (user && user.isAdmin) { %>
-        <button><a href="<%= '/delete-message/' + message._id %>">Delete</a></button>
-     <% } %>
+        </div>
+        <% })%>
     </div>
-    <% })%>
   </body>
 </html>
