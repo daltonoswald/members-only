@@ -149,7 +149,7 @@ exports.user_join_club_get = (req, res, next) => {
 
 exports.user_join_club_post = async (req, res, next) => {
   try {
-    if (req.body.passcode === process.env.PASSCODE) {
+    if (req.body.passcode === process.env.PASSCODE || PASSCODE ) {
       await User.findByIdAndUpdate(req.user.id, { isMember: true });
       res.redirect('/');
     } else {
@@ -170,7 +170,7 @@ exports.user_become_admin_get = (req, res, next) => {
 
 exports.user_become_admin_post = async (req, res, next) => {
     try {
-      if (req.body.adminCode === process.env.ADMINCODE) {
+      if (req.body.adminCode === process.env.ADMINCODE || ADMINCODE) {
         await User.findByIdAndUpdate(req.user.id, { isAdmin: true });
         res.redirect('/');
       } else {
