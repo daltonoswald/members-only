@@ -6,6 +6,9 @@ var logger = require('morgan');
 const session = require('express-session');
 const passport = require("passport");
 const LocalStrategy = require('passport-local').Strategy;
+const compression = require('compression');
+const helmet = require('helmet');
+const RateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
@@ -31,6 +34,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(compression());
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+  }
+}))
+
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000,
+  max: 20,
+})
+app.use(limiter);
 
 app.use(
   session({
