@@ -1,24 +1,24 @@
 <div class="nav">
   <div class="left">
-    <button><a href="/">Home</a></button>
+    <a href="/" class="button">Home</a>
     <% if (typeof user !== 'undefined') { %>
-      <button><a href="/new-message">New Message</a></button>
+      <a href="/new-message" class="button">New Message</a>
       <% if (!user.isMember) { %>
-        <button><a href="/join-club">Join the Club</a></button>
+        <a href="/join-club" class="button">Join the Club</a>
       <% } %>
       <% if (user.isMember && !user.isAdmin) { %>
-        <button><a href="/become-admin">Become an Admin</a></button>
+        <a href="/become-admin" class="button">Become an Admin</a>
       <% } %>
       </div>
       <div class="right">
         <p class="username"> <%= user.username %></p>
-        <button><a href="logout">Logout</a></button>
+        <a href="logout" class="button">Logout</a>
       </div>
     <% } else { %>
     </div>
       <div class="right">
-      <button><a href="/log-in">Log in</a></button>
-      <button><a href="/sign-up">Sign up</a></button>
+      <a href="/log-in" class="button">Log in</a>
+      <a href="/sign-up" class="button">Sign up</a>
     </div>
     <% } %>
     

@@ -36,34 +36,27 @@ a {
   font-weight: 700;
 }
 
-.right > button,
-.left > button,
-.sign-up-button > button,
-.log-in-button > button,
-.delete-button > button,
-.new-message-button > button,
-.join-club-button > button,
-.become-admin-button > button,
-.delete-message-button > button {
+.button {
   background-color: #adb7da;
   color: #21273d;
-  padding: .5em;
-  border-color: #21273d;
+  padding: .3em;
+  border: 1px solid #21273d;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
   font-weight: 400;
   transform: translateY(0);
-  transition: transform 150ms, box-shadow 150ms,
+  transition: transform 150ms, box-shadow 150ms;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  width: 5vw;
+  height: 1.5em;
+  width: fit-content;
 }
 
-.right > button:hover,
-.left > button:hover,
-.sign-up-form > .sign-up-button > button:hover,
-.log-in-button > button:hover,
-.new-message-button > button:hover,
-.join-club-button > button:hover,
-.become-admin > button:hover,
-.delete-message-button > button:hover {
+
+.button:hover {
   box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
   transform: translateY(-2px);
 }
@@ -94,6 +87,15 @@ a {
   font-weight: 600;
 }
 
+.delete-button,
+.new-message-button,
+.sign-up-button,
+.log-in-button,
+.become-admin-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .sign-up-form,
 .log-in-form,
 .new-message-form,
@@ -106,6 +108,17 @@ a {
   gap: 1vh;
   width: 75%;
   margin: 0 auto;
+}
+
+.delete-message-form {
+flex-direction: row;
+justify-content: space-around;
+align-items: center;
+}
+
+.delete-message-button {
+  display: flex;
+  gap: 2vw;
 }
 
 .back {
@@ -123,27 +136,6 @@ input {
   padding: .5em;
 }
 
-.sign-up-button,
-.log-in-button,
-.delete-button,
-.new-message-button,
-.join-club-button,
-.become-admin-button,
-.delete-message-button {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.sign-up-button > button,
-.log-in-button > button,
-.new-message-button > button,
-.join-club-button > button,
-.become-admin-button > button,
-.delete-message-button > button {
-  font-size: 16px;
-  width: 8em;
-  padding: .5em;
-}
 
 .new-message-text {
   font-family: "Roboto";

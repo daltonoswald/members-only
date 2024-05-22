@@ -28,7 +28,7 @@
           </div>
           <% if (user && user.isAdmin) { %>
             <div class="delete-button">
-              <button><a href="<%= '/delete-message/' + message._id %>">Delete</a></button>
+              <a href="<%= '/delete-message/' + message._id %>" class="button">Delete</a>
             </div>
         <% } %>
         </div>
